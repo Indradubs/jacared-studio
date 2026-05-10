@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jacared Studio | YouTube Dubbing Studio</title>
+  <meta name="description" content="Professional dubbing studio for YouTube channels. Expand your content to Brazil with high-quality voice acting and localization." />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0b0f1a;
+      --bg-secondary: #111827;
+      --card: rgba(17, 24, 39, 0.75);
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --primary: #ef4444;
+      --primary-dark: #b91c1c;
+      --accent: #38bdf8;
+      --border: rgba(255,255,255,0.08);
+      --shadow: 0 20px 50px rgba(0,0,0,0.35);
+      --radius: 24px;
+      --max-width: 1200px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(56,189,248,0.15), transparent 35%),
+        radial-gradient(circle at top left, rgba(239,68,68,0.12), transparent 30%),
+        linear-gradient(180deg, #0b0f1a 0%, #090c14 100%);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%; 
+      display: block;
+    }
+
+    .container {
+      width: min(var(--max-width), calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(14px);
+      background: rgba(11, 15, 26, 0.78);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 800;
+      font-size: 1.15rem;
+    }
+
+    .brand img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%; 
+      box-shadow: 0 0 20px rgba(239,68,68,0.35);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 0.95rem 1.5rem;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: 0.25s ease;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      box-shadow: 0 10px 30px rgba(239,68,68,0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 40px rgba(239,68,68,0.35);
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.06);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 6rem 0 4rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(56,189,248,0.08);
+      border: 1px solid rgba(56,189,248,0.18);
+      color: #7dd3fc;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 4.8rem);
+      line-height: 1.05;
+      font-weight: 800;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .stat {
+      padding: 1rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      backdrop-filter: blur(10px);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.4rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .hero-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+      text-align: center;
+    }
+
+    .hero-card img {
+      width: min(320px, 100%);
+      margin: 0 auto 1.5rem;
+      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.35));
+    }
+
+    /* Sections */
+    section {
+      padding: 4rem 0;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 0.75rem;
+      font-weight: 800;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      max-width: 720px;
+      margin-bottom: 2.5rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow);
+    }
+
+    .icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, rgba(239,68,68,0.18), rgba(56,189,248,0.18));
+      color: white;
+    }
+
+    .card h3 {
+      margin-bottom: 0.6rem;
+      font-size: 1.2rem;
+    }
+
+    .card p, .card li {
+      color: var(--muted);
+    }
+
+    .card ul {
+      padding-left: 1.2rem;
+    }
+
+    .card li + li {
+      margin-top: 0.5rem;
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .contact-card {
+      text-align: center;
+    }
+
+    .contact-card .icon {
+      margin: 0 auto 1rem;
+    }
+
+    /* Footer */
+    footer {
+      padding: 2.5rem 0 3rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero-grid,
+      .grid-3,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container nav">
+      <a href="#home" class="brand">
+        <img src="jacaredperfil.png" alt="Jacared Studio Logo">
+        <span>Jacared Studio</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#how-it-works">How It Works</a>
+        <a href="#terms">Terms</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <span class="badge">🇧🇷 Expand Your YouTube Channel to Brazil</span>
+          <h1>Reach Millions of Brazilian Viewers with Professional Dubbing</h1>
+          <p>
+            Jacared Studio is a professional YouTube dubbing studio specialized in bringing English content to Brazil.
+            We translate, adapt, dub and deliver high-quality audio that helps your channel grow faster and reach a new audience.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary"
+               href="https://wa.me/5579999433418?text=I%20am%20interested%20in%20your%20dubbing%20services%20and%20would%20like%20to%20learn%20more."
+               target="_blank">
+              <i class="fab fa-whatsapp"></i>
+              Contact on WhatsApp
+            </a>
+
+            <a class="btn btn-secondary" href="#contact">
+              <i class="fas fa-envelope"></i>
+              Get a Quote
+            </a>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <strong>Native Adaptation</strong>
+              <span>Scripts localized for Brazilian audiences</span>
+            </div>
+            <div class="stat">
+              <strong>Studio Quality</strong>
+              <span>Professional voice acting and audio treatment</span>
+            </div>
+            <div class="stat">
+              <strong>Scalable Team</strong>
+              <span>Multiple voice actors for ongoing projects</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <img src="jacaredperfil.png" alt="Jacared Studio Mascot">
+          <h3>Your Content, Now in Brazil 🇧🇷</h3>
+          <p>
+            Unlock a new market with one of the largest and most engaged YouTube audiences in the world.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how-it-works">
+      <div class="container">
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-subtitle">
+          Our workflow is designed to deliver fast, professional and scalable dubbing for your YouTube content.
+        </p>
+
+        <div class="grid-3">
+          <div class="card">
+            <div class="icon"><i class="fas fa-file-video"></i></div>
+            <h3>1. Send Your Video</h3>
+            <p>
+              Share your video, script and any style references. We analyze the project and provide a custom quote.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="icon"><i class="fas fa-microphone-lines"></i></div>
+            <h3>2. Translation & Dubbing</h3>
+            <p>
+              We adapt your content to Brazilian Portuguese and record with talented voice actors.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="icon"><i class="fas fa-rocket"></i></div>
+            <h3>3. Delivery & Growth</h3>
+            <p>
+              Receive polished audio ready for publishing and start reaching a massive new audience.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TERMS -->
+    <section id="terms">
+      <div class="container">
+        <h2 class="section-title">Terms of Service</h2>
+        <p class="section-subtitle">
+          Clear and professional terms to ensure a smooth collaboration.
+        </p>
+
+        <div class="grid-3">
+          <div class="card">
+            <div class="icon"><i class="fas fa-credit-card"></i></div>
+            <h3>Payment</h3>
+            <ul>
+              <li>Projects begin after payment confirmation.</li>
+              <li>Large projects may require an upfront deposit.</li>
+              <li>Final files are delivered after full payment.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="icon"><i class="fas fa-clock"></i></div>
+            <h3>Delivery</h3>
+            <ul>
+              <li>Delivery times depend on video length and complexity.</li>
+              <li>Estimated deadlines are provided before production.</li>
+              <li>Rush delivery may be available upon request.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="icon"><i class="fas fa-rotate"></i></div>
+            <h3>Revisions</h3>
+            <ul>
+              <li>Reasonable revisions are included.</li>
+              <li>Major script changes may incur additional fees.</li>
+              <li>Clients receive commercial usage rights after payment.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container">
+        <h2 class="section-title">Let's Bring Your Channel to Brazil</h2>
+        <p class="section-subtitle">
+          Contact us today and discover how professional dubbing can maximize your channel's reach.
+        </p>
+
+        <div class="contact-grid">
+          <a class="card contact-card"
+             href="https://www.instagram.com/jacared.studio/"
+             target="_blank">
+            <div class="icon"><i class="fab fa-instagram"></i></div>
+            <h3>Instagram</h3>
+            <p>@jacared.studio</p>
+          </a>
+
+          <a class="card contact-card"
+             href="https://wa.me/5579999433418?text=I%20am%20interested%20in%20your%20dubbing%20services%20and%20would%20like%20to%20learn%20more."
+             target="_blank">
+            <div class="icon"><i class="fab fa-whatsapp"></i></div>
+            <h3>WhatsApp</h3>
+            <p>Fastest way to get a quote</p>
+          </a>
+
+          <a class="card contact-card"
+             href="mailto:jacaredproductions@gmail.com">
+            <div class="icon"><i class="fas fa-envelope"></i></div>
+            <h3>Email</h3>
+            <p>jacaredproductions@gmail.com</p>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Jacared Studio. Professional YouTube Dubbing for the Brazilian Market. 🇧🇷</p>
+    </div>
+  </footer>
+
+</body>
+</html>
